@@ -13,18 +13,18 @@ const NavBar = () => {
     }
 
     const navOptions = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/instructors">Instructors</Link></li>
-        <li><Link to="/classes">Classes</Link></li>
+        <li className="text-blue-400"><Link to="/">Home</Link></li>
+        <li className="text-blue-400"><Link to="/instructors">Instructors</Link></li>
+        <li className="text-blue-400"><Link to="/classes">Classes</Link></li>
         
         
         {
-                        user ?   <> <span><li><Link to="/dashboard">Dashboard</Link></li></span> <span><button onClick={handleLogOut}>Logout</button> </span>  </> : <Link to='/login'><button>Login</button> </Link>
+                        user ?   <> <span><li className="text-blue-400"><Link to="/dashboard">Dashboard</Link></li></span> <span><button onClick={handleLogOut}>Logout</button> </span>  </> : <Link to='/login'><button className="text-blue-400">Login</button> </Link>
                     }
 
                     {
                         user && <div className="tooltip" data-tip={user.displayName}>
-                            <img src={user.photoURL} className='rounded-full w-1/2 m-4' />
+                            <img src={user.photoURL} className='rounded-full w-9 h-8 m-4' />
                         </div>
                     }
 
@@ -42,7 +42,7 @@ const NavBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">SportsCampZ</a>
+                    <a className="btn btn-ghost normal-case text-xl text-blue-400">SportsCampZ</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

@@ -6,6 +6,7 @@ import Classes from "../pages/Classes/Classes";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import NotFound from "../pages/NotFound/NotFound";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         },
       ]
     },
+    {
+      path: '*',
+      element: <NotFound></NotFound>
+    }
   ]);
 
   export default router;
