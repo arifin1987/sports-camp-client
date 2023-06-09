@@ -1,6 +1,35 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
+
+    const navOptions = <>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/instructors">Instructors</Link></li>
+        <li><Link to="/classes">Classes</Link></li>
+        
+        
+        {
+                        user ?   <> <span><li><Link to="/dashboard">Dashboard</Link></li></span> <span><button onClick={handleLogOut}>Logout</button> </span>  </> : <Link to='/login'><button>Login</button> </Link>
+                    }
+
+                    {
+                        user && <div className="tooltip" data-tip={user.displayName}>
+                            <img src={user.photoURL} className='rounded-full w-1/2 m-4' />
+                        </div>
+                    }
+
+
+    </>
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -10,25 +39,17 @@ const NavBar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Home</a></li>
-                            
-                            <li><a>Instructors</a></li>
-                            <li><a>Classes</a></li>
-                            <li><a>Dashboard</a></li>
+                            {navOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">SportsCamp</a>
+                    <a className="btn btn-ghost normal-case text-xl">SportsCampZ</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                    <li><a>Home</a></li>
-                            
-                            <li><a>Instructors</a></li>
-                            <li><a>Classes</a></li>
-                            <li><a>Dashboard</a></li>
+                        {navOptions}
                     </ul>
                 </div>
-                
+
             </div>
         </div>
     );
