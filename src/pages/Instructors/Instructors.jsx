@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
+import AllInstructor from "./AllInstructor";
 
 
 const Instructors = () => {
+    const [instructors, setInstructors]= useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/instructors')
+        .then(res=> res.json())
+        .then(data=> setInstructors(data))
+    },[])
     return (
-        <div>
-            <h2>This is instructors page</h2>
+        <div className="md:grid grid-cols-3 gap-2 ">
+            {
+                instructors.map(instructor=> <AllInstructor
+                key={instructor._id}
+                instructor={instructor}
+                
+                ></AllInstructor> )
+            }
         </div>
     );
 };
