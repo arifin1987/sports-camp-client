@@ -1,37 +1,49 @@
 import { Link, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 
-import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
+import { FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
 
 
 const Dashboard = () => {
     const [cart] = useCart();
+    const isAdmin = true;
 
     return (
 
         <div className="flex justify-between" >
-            
+
             <div className="bg-sky-400 m-5">
                 <ul className="p-4 w-60" >
 
+                    {
+                        isAdmin ? <>
+                            <li><Link to="/dashboard/home"><FaHome></FaHome> Admin Home</Link></li>
+                            <li><Link to="/dashboard/reservations"> <FaUtensils></FaUtensils> Add Items</Link></li>
+                            <li><Link to="/dashboard/history"><FaWallet></FaWallet> Manage Items</Link></li>
+                            <li><Link to="/dashboard/history"><FaBook></FaBook> Manage Bookings</Link></li>
+                            <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> All Users</Link></li>
 
 
-                    <li><Link to="/dashboard/home"><FaHome></FaHome> Admin Home</Link></li>
-                    <li><Link to="/dashboard/reservations"> <FaUtensils></FaUtensils> Add Items</Link></li>
-                    <li><Link to="/dashboard/history"><FaWallet></FaWallet> Manage Items</Link></li>
-                    <li><Link to="/dashboard/history"><FaBook></FaBook> Manage Bookings</Link></li>
-                    <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> All Users</Link></li>
+                        </> : <>
+                            <li><Link to="/dashboard/home"><FaHome></FaHome> User Home</Link></li>
+                            <li><Link to="/dashboard/reservations"><FaCalendarAlt></FaCalendarAlt> Reservations</Link></li>
+                            <li><Link to="/dashboard/history"><FaWallet></FaWallet> Payment History</Link></li>
+                            <li>
+                                <Link to="/dashboard/mycart"> My Selected Classes
+                                    <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
+                                </Link>
+
+                            </li>
 
 
-                    <li><Link to="/dashboard/home"><FaHome></FaHome> User Home</Link></li>
-                    <li><Link to="/dashboard/reservations"><FaCalendarAlt></FaCalendarAlt> Reservations</Link></li>
-                    <li><Link to="/dashboard/history"><FaWallet></FaWallet> Payment History</Link></li>
-                    <li>
-                        <Link to="/dashboard/mycart"> My Selected Classes
-                            <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
-                        </Link>
+                        </>
+                    }
 
-                    </li>
+
+
+
+
+
 
 
 
@@ -44,7 +56,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="m-40">
+            <div className="m-20">
                 <Outlet></Outlet>
             </div>
 
