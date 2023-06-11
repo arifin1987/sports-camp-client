@@ -7,7 +7,7 @@ import useCart from "../../hooks/useCart";
 const AllClasses = ({cls}) => {
     const{image,class_name,instructor_name,available_seats,price,_id}= cls;
     const{user} = useAuth();
-    const [refetch]= useCart();
+    const [,refetch]= useCart();
     const navigate = useNavigate();
     const location = useLocation();
     const handleAddToCart = cls =>{

@@ -19,17 +19,14 @@ const NavBar = () => {
         <li className="text-blue-400"><Link to="/">Home</Link></li>
         <li className="text-blue-400"><Link to="/instructors">Instructors</Link></li>
         <li className="text-blue-400"><Link to="/classes">Classes</Link></li>
-        <li>
-            <Link to="/dashboard/mycart">
-                <button className="btn gap-2">
-                    <FaShoppingCart></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
-                </button>
-            </Link>
-        </li>
+       
         
         {
-                        user ?   <> <span><li className="text-blue-400"><Link to="/dashboard">Dashboard</Link></li></span> <span><button onClick={handleLogOut}>Logout</button> </span>  </> : <Link to='/login'><button className="text-blue-400">Login</button> </Link>
+                        user ?   <> <span><li className="text-blue-400"><Link to="/dashboard/mycart">
+                            Dashboard
+                            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                            </Link></li></span>  
+                        <span><button onClick={handleLogOut}>Logout</button> </span>  </> : <Link to='/login'><button className="text-blue-400">Login</button> </Link>
                     }
 
                     {
