@@ -1,12 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 
-import { FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
+import {  FaHome,  FaUsers } from 'react-icons/fa';
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+    
+    
 
     return (
 
@@ -16,26 +21,44 @@ const Dashboard = () => {
                 <ul className="p-4 w-60" >
 
                     {
-                        isAdmin ? <>
-                            <li><Link to="/dashboard/home"><FaHome></FaHome> Admin Home</Link></li>
-                            <li><Link to="/dashboard/reservations"> <FaUtensils></FaUtensils> Add Items</Link></li>
-                            <li><Link to="/dashboard/history"><FaWallet></FaWallet> Manage Items</Link></li>
-                            <li><Link to="/dashboard/history"><FaBook></FaBook> Manage Bookings</Link></li>
+                        isAdmin && <>
+                            
+                            <li><Link to="/dashboard/manageclasses">  Manage Classes</Link></li>
+                          
+                            
                             <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> All Users</Link></li>
+                            
 
 
-                        </> : <>
+                        
                             <li><Link to="/dashboard/home"><FaHome></FaHome> User Home</Link></li>
-                            <li><Link to="/dashboard/reservations"><FaCalendarAlt></FaCalendarAlt> Reservations</Link></li>
-                            <li><Link to="/dashboard/history"><FaWallet></FaWallet> Payment History</Link></li>
-                            <li>
+                            
+                            
+                           
+
+
+                        </>
+                    }
+                    
+                    {
+                        isInstructor &&
+                        <>
+                        <li><Link to="/dashboard/addclass">  Add a Classes</Link></li>
+                        <li><Link to="/dashboard/myclass">  My Classes</Link></li>
+                        </>
+                        
+
+                    }
+                    {
+                        !isAdmin && !isInstructor &&
+                        <>
+                         <li>
                                 <Link to="/dashboard/mycart"> My Selected Classes
                                     <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
                                 </Link>
+                                <li><Link to="/dashboard/myenrolledclass">  My Enrolled Classes</Link></li>
 
                             </li>
-
-
                         </>
                     }
 
@@ -49,10 +72,7 @@ const Dashboard = () => {
 
 
 
-                    <div className="divider"></div>
-                    <li><Link to="/"><FaHome></FaHome> Home</Link> </li>
-                    <li><Link to="/menu"> Our Menu</Link></li>
-                    <li><Link to="/order/salad">Order Food</Link></li>
+                    
                 </ul>
 
             </div>
