@@ -10,6 +10,7 @@ const Dashboard = () => {
     const [cart] = useCart();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
+    console.log(isInstructor);
     
     
 
@@ -43,8 +44,9 @@ const Dashboard = () => {
                     {
                         isInstructor &&
                         <>
-                        <li><Link to="/dashboard/addclass">  Add a Classes</Link></li>
+                        
                         <li><Link to="/dashboard/myclass">  My Classes</Link></li>
+                        <li><Link to="/dashboard/addclass">  Add A Class</Link></li>
                         </>
                         
 
@@ -76,7 +78,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="m-20">
+            <div className="w-full">
                 <Outlet></Outlet>
             </div>
 
