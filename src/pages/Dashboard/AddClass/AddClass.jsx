@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const AddClass = () => {
     const[axiosSecure]= useAxiosSecure();
     
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     const onSubmit = data => {
@@ -26,7 +27,17 @@ const AddClass = () => {
                 console.log(newClass);
                 axiosSecure.post('/classes', newClass)
                 .then(data=>{
-                    console.log(data.data);
+                    if(data.data.insertedId){
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class added successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                        
+                    }
                 })
             }
         })
