@@ -1,6 +1,7 @@
 import { FaTrash } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const MyCart = () => {
@@ -81,7 +82,8 @@ const MyCart = () => {
                                 </td>
                                 <td className="text-end">${item.price}</td>
                                 <td>
-                                <button className="btn btn-warning btn-sm">PAY</button>
+                                    <Link to='/dashboard/payment'> <button className="btn btn-warning btn-sm">PAY</button></Link>
+                               
                                 </td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn btn-primary bg-sky-600  text-white"><FaTrash></FaTrash></button>

@@ -2,11 +2,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin]= useAdmin();
+    const [isInstructor]= useInstructor();
     const [cart] = useCart();
 
     const handleLogOut = () => {
