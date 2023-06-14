@@ -4,23 +4,27 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
 
-const CheckoutForm = ({itemPrice}) => {
+const CheckoutForm = ({cart,price}) => {
+    console.log(cart)
     const stripe = useStripe()
     const elements = useElements();
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure()
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState('');
 
     useEffect(() => {
-        if (itemPrice > 0) {
-            axiosSecure.post('/create-payment-intent', { itemPrice })
+        console.log(price);
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
                     console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret);
                 })
         }
-    }, [itemPrice, axiosSecure])
+    }, [price,axiosSecure])
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,6 +64,30 @@ const CheckoutForm = ({itemPrice}) => {
             console.log(confirmError);
         }
         console.log('payment intent', paymentIntent)
+        setProcessing(false)
+        if (paymentIntent.status === 'succeeded') {
+            setTransactionId(paymentIntent.id);
+            // save payment information to the server
+            const payment = {
+                email: user?.email,
+                transactionId: paymentIntent.id,
+                price,
+                date: new Date(),
+                quantity: cart.length,
+                cartItems: cart.map(item => item._id),
+                classItems: cart.map(item => item.classId),
+                status: 'service pending',
+                classNames: cart.map(item => item.class_name)
+            }
+            axiosSecure.post('/payments', payment)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.result.insertedId) {
+                        // display confirm
+                    }
+                })
+        }
+
     }
     return (
         <>
@@ -80,14 +108,15 @@ const CheckoutForm = ({itemPrice}) => {
                         },
                     }}
                 />
-                <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing} >
+                <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing } >
                     Pay
                 </button>
             </form>
             {cardError && <p className="text-red-500 ml-8">{cardError}</p>}
-           
-            
+            {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
         </>
+            
+       
     );
 };
 

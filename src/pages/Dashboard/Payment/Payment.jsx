@@ -2,15 +2,17 @@ import { loadStripe } from "@stripe/stripe-js";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import {Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from "./CheckoutForm";
+import { useLocation } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
+
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
-    const [cart]= useCart();
-    console.log(cart);
-    const itemPrice = cart.map(prc => prc.price);
-    console.log(itemPrice);
+    const[cart]=useCart()
+    const location = useLocation();
+    const data = location.state;
+    console.log(data);
     return (
         <div>
             <SectionTitle
@@ -18,7 +20,7 @@ const Payment = () => {
             heading={'Payment'}
             ></SectionTitle>
             <Elements stripe={stripePromise}>
-                <CheckoutForm price={itemPrice} ></CheckoutForm>
+                <CheckoutForm cart={cart} price={data} ></CheckoutForm>
             </Elements>
             
         </div>
