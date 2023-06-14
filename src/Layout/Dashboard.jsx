@@ -4,6 +4,7 @@ import useCart from "../hooks/useCart";
 import { FaHome, FaUsers } from 'react-icons/fa';
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import { Bounce, Zoom } from "react-awesome-reveal";
 
 
 const Dashboard = () => {
@@ -23,16 +24,22 @@ const Dashboard = () => {
 
                     {
                         isAdmin && <>
+                        <Bounce>
+                        <li><Link to="/dashboard/manageclasses">  Manage Classes</Link></li>
 
-                            <li><Link to="/dashboard/manageclasses">  Manage Classes</Link></li>
+                        </Bounce>
+
+                            
+                            <Bounce>
+                            <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> Manage Users</Link></li>
+                            </Bounce>
+
+                          
 
 
-                            <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> All Users</Link></li>
 
 
-
-
-                            <li><Link to="/dashboard/home"><FaHome></FaHome> User Home</Link></li>
+                           
 
 
 
@@ -44,9 +51,14 @@ const Dashboard = () => {
                     {
                         isInstructor &&
                         <>
-
+                            <Zoom>
                             <li><Link to="/dashboard/myclass">  My Classes</Link></li>
+                            </Zoom>
+                            <Zoom>
                             <li><Link to="/dashboard/addclass">  Add A Class</Link></li>
+                            </Zoom>
+                            
+                            
                         </>
 
 
@@ -54,22 +66,35 @@ const Dashboard = () => {
                     {
                         !isAdmin && !isInstructor &&
                         <>
-                            <li>
-                                <Link to="/dashboard/mycart"> My Selected Classes
+                            <Bounce>
+                            <Link to="/dashboard/mycart"> My Selected Classes
                                     <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
                                 </Link>
-                                <li><Link to="/dashboard/myenrolledclass">  My Enrolled Classes</Link></li>
-                                <li><Link to="/dashboard/paymenthistory">  Payment History</Link></li>
+                                
+                            </Bounce>
+                                
+                                <Bounce>
+                                <Link to="/dashboard/myenrolledclass">  My Enrolled Classes</Link>
+                                </Bounce>
+
+                                <Bounce>
+                                <Link to="/dashboard/paymenthistory">  Payment History</Link>
+                                </Bounce>
+                                
+                                
 
 
-                            </li>
+                            
                         </>
                     }
 
 
 
                     <div className="divider"></div>
+                    <Bounce>
                     <li><NavLink to="/"><FaHome></FaHome> Home</NavLink> </li>
+                    </Bounce>
+                    
                     
 
 

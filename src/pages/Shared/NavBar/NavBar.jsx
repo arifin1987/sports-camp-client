@@ -5,6 +5,7 @@ import useCart from "../../../hooks/useCart";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
 import { FaShoppingCart } from "react-icons/fa";
+import {  Zoom } from "react-awesome-reveal";
 
 
 
@@ -28,12 +29,19 @@ const NavBar = () => {
     return (
         <div >
             <div className="md:flex justify-between ">
+                <Zoom>
                 <a className="btn btn-ghost normal-case text-xl text-blue-400">SportsCampZ</a>
+                </Zoom>
+                
 
                 <div className="px-5">
+                    
                     <Link className="mx-4 text-sky-400" to='/'>Home</Link>
                     <Link className="mx-4 text-sky-400" to='/instructors'>Instructors</Link>
                     <Link className="mx-4 text-sky-400" to='/classes'>Classes</Link>
+
+                   
+                   
                     {
                         isAdmin && <Link to="/dashboard/adminhome" className="text-sky-500">Dashboard</Link>
                     }

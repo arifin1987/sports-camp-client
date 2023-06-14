@@ -1,9 +1,17 @@
+import { Bounce } from "react-awesome-reveal";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 
 const InstructorHome = () => {
     return (
         <div>
-            <h2>This is instructor home</h2>
+            <Bounce>
+            <SectionTitle
+            subHeading={"Welcome to Instructor Home"}
+            heading={"Instructor HOME"}
+            ></SectionTitle>
+
+            </Bounce>
         </div>
     );
 };
