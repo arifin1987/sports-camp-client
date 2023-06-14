@@ -1,7 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 
-import {  FaHome,  FaUsers } from 'react-icons/fa';
+import { FaHome, FaUsers } from 'react-icons/fa';
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 
@@ -11,8 +11,8 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
     console.log(isInstructor);
-    
-    
+
+
 
     return (
 
@@ -23,38 +23,38 @@ const Dashboard = () => {
 
                     {
                         isAdmin && <>
-                            
+
                             <li><Link to="/dashboard/manageclasses">  Manage Classes</Link></li>
-                          
-                            
+
+
                             <li><Link to="/dashboard/allusers"><FaUsers></FaUsers> All Users</Link></li>
-                            
 
 
-                        
+
+
                             <li><Link to="/dashboard/home"><FaHome></FaHome> User Home</Link></li>
-                            
-                            
-                           
+
+
+
 
 
                         </>
                     }
-                    
+
                     {
                         isInstructor &&
                         <>
-                        
-                        <li><Link to="/dashboard/myclass">  My Classes</Link></li>
-                        <li><Link to="/dashboard/addclass">  Add A Class</Link></li>
+
+                            <li><Link to="/dashboard/myclass">  My Classes</Link></li>
+                            <li><Link to="/dashboard/addclass">  Add A Class</Link></li>
                         </>
-                        
+
 
                     }
                     {
                         !isAdmin && !isInstructor &&
                         <>
-                         <li>
+                            <li>
                                 <Link to="/dashboard/mycart"> My Selected Classes
                                     <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
                                 </Link>
@@ -68,15 +68,17 @@ const Dashboard = () => {
 
 
 
-
-
-
-
-
-
-
-
+                    <div className="divider"></div>
+                    <li><NavLink to="/"><FaHome></FaHome> Home</NavLink> </li>
                     
+
+
+
+
+
+
+
+
                 </ul>
 
             </div>

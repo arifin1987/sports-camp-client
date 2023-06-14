@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { useState } from "react";
 
 
 const AllClasses = ({cls}) => {
@@ -10,7 +11,10 @@ const AllClasses = ({cls}) => {
     const [,refetch]= useCart();
     const navigate = useNavigate();
     const location = useLocation();
+    
     const handleAddToCart = cls =>{
+        
+        
         console.log(cls);
         if(user && user.email){
             const cartItem = {classId:_id,image,class_name,instructor_name,available_seats,price,email: user.email}
@@ -60,7 +64,7 @@ const AllClasses = ({cls}) => {
             <h1>Instructor Name:{instructor_name}</h1>
             <p>Available Seats:{available_seats}</p>
             <p>Price:${price}</p>
-            <button onClick={()=>handleAddToCart(cls)} className="btn btn-primary">Select Class</button>
+            <button onClick={()=>handleAddToCart(cls)} disabled={available_seats === 0} className="btn btn-primary">Select Class</button>
 
             
         </div>
