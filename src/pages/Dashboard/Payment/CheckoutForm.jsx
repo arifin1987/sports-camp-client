@@ -4,7 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
 
-const CheckoutForm = ({cart,price}) => {
+const CheckoutForm = ({cart,data}) => {
+    const{price,className}=data;
     console.log(cart)
     const stripe = useStripe()
     const elements = useElements();
@@ -77,7 +78,7 @@ const CheckoutForm = ({cart,price}) => {
                 cartItems: cart.map(item => item._id),
                 classItems: cart.map(item => item.classId),
                 status: 'service pending',
-                classNames: cart.map(item => item.class_name)
+                className: className
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {

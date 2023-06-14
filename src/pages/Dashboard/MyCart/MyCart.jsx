@@ -81,8 +81,9 @@ const MyCart = () => {
                                     {item.instructor_name}
                                 </td>
                                 <td className="text-end">${item.price}</td>
+                                
                                 <td>
-                                    <Link to='/dashboard/payment' state={item.price}> <button className="btn btn-warning btn-sm">PAY</button></Link>
+                                    <Link to='/dashboard/payment' state={{price:item.price,className:item.class_name}} > <button className="btn btn-warning btn-sm">PAY</button></Link>
                                
                                 </td>
                                 <td>

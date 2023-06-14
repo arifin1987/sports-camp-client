@@ -59,6 +59,8 @@ const Dashboard = () => {
                                     <span className="badge inl badge-secondary">+{cart?.length || 0}</span>
                                 </Link>
                                 <li><Link to="/dashboard/myenrolledclass">  My Enrolled Classes</Link></li>
+                                <li><Link to="/dashboard/paymenthistory">  Payment History</Link></li>
+
 
                             </li>
                         </>

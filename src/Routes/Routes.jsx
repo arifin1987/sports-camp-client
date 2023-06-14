@@ -15,6 +15,8 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import AdminRoute from "./AdminRoute";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import MyEnrolledClass from "../pages/Dashboard/MyEnrolledClass/MyEnrolledClass";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 
@@ -53,6 +55,16 @@ const router = createBrowserRouter([
         {
         path: 'mycart',
         element:<MyCart></MyCart>
+
+        },
+        {
+          path: 'myenrolledclass',
+        element:<MyEnrolledClass></MyEnrolledClass>
+
+        },
+        {
+          path: 'paymenthistory',
+        element:<PaymentHistory></PaymentHistory>
 
         },
         {

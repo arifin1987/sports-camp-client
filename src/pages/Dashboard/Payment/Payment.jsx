@@ -20,7 +20,7 @@ const Payment = () => {
             heading={'Payment'}
             ></SectionTitle>
             <Elements stripe={stripePromise}>
-                <CheckoutForm cart={cart} price={data} ></CheckoutForm>
+                <CheckoutForm cart={cart} data={data} ></CheckoutForm>
             </Elements>
             
         </div>
