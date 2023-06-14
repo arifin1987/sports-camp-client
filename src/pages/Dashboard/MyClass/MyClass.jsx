@@ -1,20 +1,24 @@
-import { Flip } from "react-awesome-reveal";
+import { useEffect } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import useClasses from "../../../hooks/useClasses";
+import { useState } from "react";
 
 
-const ManageClasses = () => {
-    const [classes] = useClasses();
+const MyClass = () => {
+    const[myclass, setMyclass] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/classes')
+        .then(res=> res.json())
+        .then(data=>setMyclass(data) )
+    },[])
     return (
         <div>
-            <Flip>
             <SectionTitle
-                heading={'Manage Classes'}
-                subHeading={'Classes managed by admin'}
-            ></SectionTitle>
-
-            </Flip>
+            subHeading={'All my classes here'}
+            heading={'My Classes'}
             
+            >
+
+            </SectionTitle>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -23,6 +27,7 @@ const ManageClasses = () => {
                             <th>
                                 #
                             </th>
+                            
                             <th>Class Name</th>
                             <th>Instructor Name</th>
                             <th>Instructor Email</th>
@@ -33,7 +38,7 @@ const ManageClasses = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {classes.map((item,index)=><tr key={item._id}>
+                        {myclass.map((item,index)=><tr key={item._id}>
                             <td>
                                 {index +1}
                             </td>
@@ -66,10 +71,10 @@ const ManageClasses = () => {
                             <td>
                                 {item.status}
                             </td>
-                           
-                            <button className="btn btn-sm btn-primary my-2">Approve</button>
-                            <button className="btn btn-sm btn-primary my-2">Deny</button>
-                            <button className="btn btn-sm btn-primary my-2">Feedback</button>
+                            <button className="btn btn-primary btn-sm my-2">Feedback</button>
+                            <button className="btn btn-primary btn-sm my-2">Update</button>
+
+                            
                         </tr>)}
                         
                        
@@ -77,9 +82,11 @@ const ManageClasses = () => {
                    
 
                 </table>
+
             </div>
+            
         </div>
     );
 };
 
-export default ManageClasses;
+export default MyClass;

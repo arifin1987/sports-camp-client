@@ -20,6 +20,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
+import MyClass from "../pages/Dashboard/MyClass/MyClass";
 
 
 
@@ -96,6 +97,11 @@ const router = createBrowserRouter([
         {
           path:'addclass',
           element: <AddClass></AddClass>
+        },
+        {
+          path:'myclass',
+          element:<MyClass></MyClass>
+
         },
         {
           path:'manageclasses',

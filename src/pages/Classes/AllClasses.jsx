@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
-import { useState } from "react";
+
 
 
 const AllClasses = ({cls}) => {
