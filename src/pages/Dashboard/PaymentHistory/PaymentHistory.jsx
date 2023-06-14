@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const PaymentHistory = () => {
     const [payment, setPayment] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/payments')
+        fetch('https://sports-camp-server-eight.vercel.app/payments')
             .then(res => res.json())
             .then(data => setPayment(data))
     }, [])

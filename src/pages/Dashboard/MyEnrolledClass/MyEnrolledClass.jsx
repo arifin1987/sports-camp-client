@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const MyEnrolledClass = () => {
     const [enrolled, setEnrolled]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/payments')
+        fetch('https://sports-camp-server-eight.vercel.app/payments')
         .then(res=>res.json())
         .then(data=> setEnrolled(data))
     },[])
