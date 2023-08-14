@@ -5,7 +5,7 @@ const WhoWeare = () => {
     return (
         <div>
             <SectionTitle
-            subHeading={"We are exceptional than othes"}
+            subHeading={"We are exceptional than others"}
             heading={"Who We Are"}
             ></SectionTitle>
             <div className="md:grid grid-cols-3 gap-2">

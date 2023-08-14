@@ -14,3 +14,5 @@
 *React-awesome-reveal for animation and many more
 vercel: https://sports-camp-server-eight.vercel.app
 firebase: https://sports-camp-47e08.web.app
+admin email: sakib@gmail.com
+admin password: 1234Sakib!
